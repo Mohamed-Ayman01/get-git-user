@@ -7,39 +7,39 @@ let ProjectsCont = document.querySelector(".projects");
 
 async function getDataOf(user) {
   userInfoCont.innerHTML = "";
-  ProjectsCont.innerHTML = ""
+  ProjectsCont.innerHTML = "";
 
   let userData = await fetch(`https://api.github.com/users/${user}`);
-  let infoResponse = await userData.json();
+  let userResponse = await userData.json();
 
   // ! Fetching User Bio
   let avatarImg = document.createElement("img");
   avatarImg.className = "avatar";
-  avatarImg.src = infoResponse.avatar_url;
+  avatarImg.src = userResponse.avatar_url;
 
   let textBox = document.createElement("div");
   textBox.className = "text-box";
 
-  let username = document.createElement("h2");
+  let username = document.createElement("h3");
   username.className = "name";
-  username.textContent = infoResponse.name;
+  username.innerHTML = `<a href="${userResponse.html_url}" target="_blank"><i class="fas fa-link"></i></a> ${userResponse.name}`;
   let userBio = document.createElement("p");
   userBio.className = "bio";
-  userBio.textContent = infoResponse.bio;
+  userBio.textContent = userResponse.bio;
 
-  let followStats = document.createElement("div");
-  followStats.classList.add("follow-stats");
+  let stats = document.createElement("div");
+  stats.classList.add("stats");
 
   let followers = document.createElement("div");
   followers.className = "followers";
-  followers.innerHTML = `<span>${infoResponse.followers}</span> <p>followers</p>`;
+  followers.innerHTML = `<span>${userResponse.followers}</span> <p>followers</p>`;
   let following = document.createElement("div");
   following.className = "following";
-  following.innerHTML = `<span>${infoResponse.following}</span> <p>following</p>`;
+  following.innerHTML = `<span>${userResponse.following}</span> <p>following</p>`;
 
-  followStats.append(followers, following);
+  stats.append(followers, following);
 
-  textBox.append(username, userBio, followStats);
+  textBox.append(username, userBio, stats);
 
   userInfoCont.append(avatarImg, textBox);
 
@@ -52,25 +52,29 @@ async function getDataOf(user) {
       let item = document.createElement("div");
       item.classList.add("item");
 
+      let projText = document.createElement("div");
+
       let name = document.createElement("h3");
       name.classList.add("name");
-      name.textContent = `${element.full_name}`;
+      name.textContent = `${element.name}`;
 
       let desc = document.createElement("p");
       desc.classList.add("desc");
-      desc.textContent = `${element.description}`;
+      desc.textContent = `${element.description ?? "No Description"}`;
+
+      projText.append(name, desc)
 
       let link = document.createElement("a");
       link.textContent = "view";
       link.href = `${element.html_url}`;
       link.target = "_blank";
 
-      item.append(name, desc, link);
+      item.append(projText, link);
       ProjectsCont.append(item);
     }
   });
 
-  console.log(infoResponse);
+  console.log(userResponse);
   console.log(projectsResponse);
 }
 

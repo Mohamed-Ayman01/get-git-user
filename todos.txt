@@ -1,0 +1,3 @@
+- divide the userInfo fetch from the projects fetch
+- track error and make warnings
+- get more data [user page link, website, projects stars]
