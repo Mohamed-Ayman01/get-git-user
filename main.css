@@ -41,12 +41,9 @@ body {
   gap: 1rem;
 }
 
-.container > * {
+.container form {
   padding: 1rem;
   background-color: var(--dark-black);
-}
-
-.container form {
   display: flex;
   justify-content: space-between;
   gap: .5rem;
@@ -62,7 +59,7 @@ body {
 .container form input {
   flex: 1;
   transition: .3s ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
 }
 
 .container form input:focus {
@@ -83,8 +80,9 @@ body {
   background-color: var(--main-clr);
 }
 
-.container .result-box {
-  width: 100%;
+.container .result-box > * {
+  padding: 1rem;
+  background-color: var(--dark-black);
 }
 
 .result-box .user-info {
@@ -97,6 +95,13 @@ body {
 .result-box .user-info .info-container {
   display: flex;
   gap: 1rem;
+}
+
+@media (max-width:768px) {
+  .result-box .user-info .info-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .result-box .user-info .info-container img.avatar {
@@ -168,6 +173,7 @@ body {
 
 .projects .item div .name {
   font-size: 1.6rem;
+  word-break: break-all;
 }
 
 .projects .item a {

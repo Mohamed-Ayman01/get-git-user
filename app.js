@@ -62,10 +62,10 @@ async function getDataOf(user) {
       desc.classList.add("desc");
       desc.textContent = `${element.description ?? "No Description"}`;
 
-      projText.append(name, desc)
+      projText.append(name, desc);
 
       let link = document.createElement("a");
-      link.textContent = "view";
+      link.textContent = "view repo";
       link.href = `${element.html_url}`;
       link.target = "_blank";
 

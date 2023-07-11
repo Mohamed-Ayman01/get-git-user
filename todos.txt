@@ -1,3 +1,11 @@
-- divide the userInfo fetch from the projects fetch
+- hide result boxes before Search
+- track undefiend user error and clear
 - track error and make warnings
-- get more data [user page link, website, projects stars]
+
+- >= 576px small
+
+- >= 768px medium
+
+- >= 922px large
+
+- >= 1200px X-large
