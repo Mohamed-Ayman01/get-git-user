@@ -13,6 +13,23 @@
   --box-pad: .5rem 1rem;
 }
 
+.hidden {
+  display: none;
+}
+
+.warn {
+  animation: warning .5s ease-in-out 0s forwards;
+}
+
+@keyframes warning {
+  0% {
+    top: -60px;
+  }
+  100% {
+    top: 20px;
+  }
+}
+
 h2.title {
   background: var(--main-clr);
   padding: var(--box-pad);
@@ -68,6 +85,19 @@ body {
 
 .container form input:focus {
   outline: none;
+}
+
+.container form input.wrong-anim {
+  animation: wrong-anim .5s linear 0s 2 forwards;
+  border-bottom-color: red;
+}
+
+@keyframes wrong-anim {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) } 
 }
 
 .container form button {
