@@ -66,28 +66,40 @@ body {
   gap: .5rem;
 }
 
-.container form > * {
+@media (max-width:768px) {
+  .container form {
+    flex-direction: column;
+  }
+  
+  .container form button {
+    width: 50%;
+    align-self: center;
+  }
+}
+
+.container form > *:not(.title) {
   padding: var(--box-pad);
-  border: none;
   color: #fff;
   background: var(--light-black);
 }
 
-.container form input {
+.container form #username {
   flex: 1;
   transition: .3s ease;
+  border: none;
+  border: none;
   border-bottom: 2px solid transparent;
 }
 
-.container form input:focus {
+.container form #username:focus {
   border-bottom-color: var(--main-clr);
 }
 
-.container form input:focus {
+.container form #username:focus {
   outline: none;
 }
 
-.container form input.wrong-anim {
+.container form #username.wrong-anim {
   animation: wrong-anim .5s linear 0s 2 forwards;
   border-bottom-color: red;
 }
@@ -103,6 +115,7 @@ body {
 .container form button {
   letter-spacing: 1px;
   cursor: pointer;
+  border: none;
   transition: .3s ease;
 }
 
@@ -186,6 +199,12 @@ body {
   gap: .5rem;
 }
 
+@media (max-width: 390px) {
+  .result-box .projects-info .projects {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
 .projects .item {
   padding: 1rem;
   display: flex;
@@ -204,6 +223,12 @@ body {
 .projects .item div .name {
   font-size: 1.6rem;
   word-break: break-all;
+}
+
+@media (max-width: 460px) {
+  .projects .item div .name {
+    font-size: 1.3rem;
+  }
 }
 
 .projects .item a {

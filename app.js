@@ -7,9 +7,6 @@ let userInfoCont = document.querySelector(".info-container");
 let projectsCont = document.querySelector(".projects");
 
 async function getDataOf(user) {
-  userInfoCont.innerHTML = "";
-  projectsCont.innerHTML = "";
-
   // ! Data Fetching
   let userData = await fetch(`https://api.github.com/users/${user}`);
   let projectsData = await fetch(`https://api.github.com/users/${user}/repos`);
@@ -63,12 +60,14 @@ async function getDataOf(user) {
         let name = document.createElement("h3");
         name.classList.add("name");
         name.textContent = `${element.name}`;
+        projText.append(name);
 
-        let desc = document.createElement("p");
-        desc.classList.add("desc");
-        desc.textContent = `${element.description ?? "No Description"}`;
-
-        projText.append(name, desc);
+        if (element.description !== null) {
+          let desc = document.createElement("p");
+          desc.classList.add("desc");
+          desc.textContent = `${element.description ?? "No Description"}`;
+          projText.append(desc);
+        }
 
         let link = document.createElement("a");
         link.textContent = "view repo";
@@ -84,6 +83,7 @@ async function getDataOf(user) {
     // console.log(projectsData);
   } else {
     nameInput.classList.add("wrong-anim");
+    resBox.classList.add("hidden");
 
     if (document.querySelector(".warn") == null) {
       let warnBox = document.createElement("div");
@@ -96,12 +96,15 @@ async function getDataOf(user) {
     setTimeout(() => {
       document.querySelector(".warn").remove();
       nameInput.classList.remove("wrong-anim");
-    }, 3000);
+    }, 2000);
   }
 }
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  userInfoCont.innerHTML = "";
+  projectsCont.innerHTML = "";
 
   getDataOf(nameInput.value);
 
